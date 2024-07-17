@@ -16,7 +16,7 @@ function App() {
     try {
       console.log("Fetching predictions with features:", features);
       // const response = await fetch("/predict", {
-      const response = await fetch("https://52.90.41.192/predict", {
+      const response = await fetch("https://i-a-i.io/predict", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -46,7 +46,7 @@ function App() {
     try {
       console.log("Fetching weather data...");
       // const response = await fetch("/forecast", {
-      const response = await fetch("https://52.90.41.192/forecast", {
+      const response = await fetch("https://i-a-i.io/forecast", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
