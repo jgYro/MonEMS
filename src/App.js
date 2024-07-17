@@ -16,10 +16,11 @@ function App() {
     try {
       console.log("Fetching predictions with features:", features);
       // const response = await fetch("/predict", {
-      const response = await fetch("https://52.90.41.192/predict", {
+      const response = await fetch("http://52.90.41.192/predict", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify({
           temp: features.TEMP,
@@ -30,7 +31,7 @@ function App() {
         }),
       });
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`HTTPs error! status: ${response.status}`);
       }
       const data = await response.json();
       console.log("Predictions data:", data);
@@ -45,10 +46,11 @@ function App() {
     try {
       console.log("Fetching weather data...");
       // const response = await fetch("/forecast", {
-      const response = await fetch("https://52.90.41.192/forecast", {
+      const response = await fetch("http://52.90.41.192/forecast", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify({
           location: "Morgantown",
@@ -57,7 +59,7 @@ function App() {
         }),
       });
       if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(`HTTPs error! status: ${response.status}`);
       }
       const data = await response.json();
       console.log("Weather data:", JSON.stringify(data, null, 2));
