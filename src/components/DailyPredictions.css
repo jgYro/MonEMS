@@ -1,0 +1,45 @@
+/* components/DailyPredictions.css */
+.daily-predictions {
+  margin: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.predictions-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.predictions-table th,
+.predictions-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.predictions-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.predictions-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.zone-predictions-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.zone-predictions-table td {
+  border: none;
+  padding: 2px;
+}
+
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}
