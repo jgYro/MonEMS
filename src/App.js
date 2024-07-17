@@ -15,7 +15,8 @@ function App() {
   const fetchPredictions = useCallback(async (features) => {
     try {
       console.log("Fetching predictions with features:", features);
-      const response = await fetch("/predict", {
+      // const response = await fetch("/predict", {
+      const response = await fetch("52.90.41.192/predict", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -43,7 +44,8 @@ function App() {
   const fetchWeatherData = useCallback(async () => {
     try {
       console.log("Fetching weather data...");
-      const response = await fetch("/forecast", {
+      // const response = await fetch("/forecast", {
+      const response = await fetch("52.90.41.192/forecast", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
