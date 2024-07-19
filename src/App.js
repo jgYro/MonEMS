@@ -19,7 +19,6 @@ function App() {
       const response = await fetch("https://api.i-a-i.io/predict", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify({
@@ -49,7 +48,6 @@ function App() {
       const response = await fetch("https://api.i-a-i.io/forecast", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify({
