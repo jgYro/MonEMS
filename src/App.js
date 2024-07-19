@@ -16,7 +16,7 @@ function App() {
     try {
       console.log("Fetching predictions with features:", features);
       // const response = await fetch("/predict", {
-      const response = await fetch("https://api.i-a-i.io/predict", {
+      const response = await fetch("https://api.i-a-i.io:5000/predict", {
         method: "POST",
         headers: {
           "Access-Control-Allow-Origin": "*",
@@ -45,7 +45,7 @@ function App() {
     try {
       console.log("Fetching weather data...");
       // const response = await fetch("/forecast", {
-      const response = await fetch("https://api.i-a-i.io/forecast", {
+      const response = await fetch("https://api.i-a-i.io:5000/forecast", {
         method: "POST",
         headers: {
           "Access-Control-Allow-Origin": "*",
