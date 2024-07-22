@@ -20,6 +20,8 @@ function App() {
         method: "POST",
         headers: {
           "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+
         },
         body: JSON.stringify({
           temp: features.TEMP,
@@ -49,6 +51,8 @@ function App() {
         method: "POST",
         headers: {
           "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json",
+
         },
         body: JSON.stringify({
           location: "Morgantown",
