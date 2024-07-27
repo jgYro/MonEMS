@@ -1,12 +1,48 @@
-// components/ComprehensiveDataTable.js
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Table, Typography, Tag, Row, Col } from "antd";
 import { ArrowUpOutlined, ArrowDownOutlined } from "@ant-design/icons";
 
 const { Title } = Typography;
 
 function ComprehensiveDataTable({ weatherData, dailyPredictions }) {
-  const averagePrediction = 39.73;
+  const [averageCounts, setAverageCounts] = useState({});
+
+  useEffect(() => {
+    const fetchAverageCounts = async () => {
+      const fetchForDate = async (date) => {
+        const response = await fetch("https://api.i-a-i.io/averages", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ date }),
+        });
+        const data = await response.json();
+        const totalAverageCount = data.reduce((acc, curr) => acc + curr.average_count, 0);
+        console.log(`Fetched average count for ${date}: ${totalAverageCount}`);
+        return totalAverageCount;
+      };
+
+      const averageCountsTemp = {};
+      for (let day of weatherData) {
+        const endTime = day.period.endTime;
+        const date = convertDateFormat(endTime);
+        averageCountsTemp[date] = await fetchForDate(date);
+      }
+      setAverageCounts(averageCountsTemp);
+    };
+
+    fetchAverageCounts();
+  }, [weatherData]);
+
+  const convertDateFormat = (endTime) => {
+    const date = new Date(endTime);
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const formattedDate = `${month}/${day}`;
+    console.log(`Converted date format for ${endTime}: ${formattedDate}`);
+    return formattedDate;
+  };
 
   const columns = [
     {
@@ -90,8 +126,17 @@ function ComprehensiveDataTable({ weatherData, dailyPredictions }) {
   const data = weatherData.map((day, index) => {
     const prediction = dailyPredictions[index];
     const totalPrediction = prediction.total_prediction;
+    const date = convertDateFormat(day.period.endTime);
+    const averagePrediction = averageCounts[date] || 0;
     const percentageDifference =
-      ((totalPrediction - averagePrediction) / averagePrediction) * 100;
+      averagePrediction !== 0
+        ? ((totalPrediction - averagePrediction) / averagePrediction) * 100
+        : 0;
+
+    console.log(`Data for ${day.period.name}:`);
+    console.log(`  Total Prediction: ${totalPrediction}`);
+    console.log(`  Average Prediction: ${averagePrediction}`);
+    console.log(`  Percentage Difference: ${percentageDifference}`);
 
     return {
       key: index,
